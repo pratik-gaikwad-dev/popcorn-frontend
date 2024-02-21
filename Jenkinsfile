@@ -10,8 +10,12 @@ pipeline {
         stage('Push') {
             steps {
                 echo 'Testing..'
-                sh 'chmod +x docker_push.sh'
-                sh './docker_push.sh'
+                sh 'docker tag ${IMAGE}:latest pratikgaikwad/${IMAGE}:latest'
+                withCredentials([string(credentialsId: '${DOCKER_PASSWORD}', variable: 'DOCKER_PASSWORD')]) {
+                    // sh 'echo $MY_SECRET'
+                    sh 'docker login -u ${DOCKER_USERNAME} -p $DOCKER_PASSWORD'
+                }
+                sh 'docker push pratikgaikwad/${IMAGE}'
             }
         }
         stage('Deploy') {
