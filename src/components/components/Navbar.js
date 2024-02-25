@@ -138,7 +138,7 @@ const Navbar = () => {
             <ListItemIcon>
               <MovieIcon />
             </ListItemIcon>
-            <ListItemText primary="Movies" />
+            <ListItemText primary="Movie" />
           </ListItemButton>
         </ListItem>
         <ListItem>
